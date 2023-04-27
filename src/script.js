@@ -103,3 +103,42 @@ window.addEventListener('load', () => {
   checkState();
 });
 
+document.addEventListener('keydown', (event) => {
+  textarea.setAttribute('autofocus', 'autofocus');
+
+    const code = event.code;
+    if (!codeTabs.includes(code)) {
+   event.preventDefault();
+     const keyItem = keyboard.querySelector(`.${code}`);
+     const itemsKey = keyItem.querySelectorAll('span');
+     console.log(itemsKey);
+     itemsKey.forEach((item) => {
+      if (!item.classList.contains('hidden') && !item.classList.contains('rus') && !item.classList.contains('eng')) {
+          textarea.value += item.textContent;
+          
+        console.log(item);
+      } 
+     });
+    } 
+  });
+
+  function runOnKey(func) {
+    document.addEventListener('keydown', (event) => {
+ if (event.ctrlKey && event.altKey) {
+  func();
+ }
+    });
+    document.addEventListener('keyup', (event) => {
+   event.preventDefault();
+    });
+  }
+  function changeLang() {
+   getLocalStorage();
+   
+   if (objLang.lang == 'rus') { objLang.lang = 'eng'; } else { objLang.lang = 'rus'; }
+   
+   setLocalStorage();
+   checkState();
+ }
+ 
+ runOnKey(changeLang);
