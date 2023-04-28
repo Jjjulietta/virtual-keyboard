@@ -56,6 +56,8 @@ const keys = document.querySelectorAll('.key');
 
 spans.forEach((item) => item.classList.add('hidden'));
 
+/* =========check state on load============== */
+
 function checkState() {
   spans.forEach((item) => item.classList.add('hidden'));
   console.log(objLang.lang);
@@ -122,6 +124,8 @@ document.addEventListener('keydown', (event) => {
     } 
   });
 
+  /* ---------------SHANGE LANGUAGES--------------------- */
+
   function runOnKey(func) {
     document.addEventListener('keydown', (event) => {
  if (event.ctrlKey && event.altKey) {
@@ -142,3 +146,72 @@ document.addEventListener('keydown', (event) => {
  }
  
  runOnKey(changeLang);
+
+ /* ----------------virtual keyboard------------------ */
+
+ /* ------------Backspace, Del, Enter Button ----------------------- */
+
+ function pressBack() {
+  textarea.focus();
+
+  if (textarea.selectionStart == textarea.selectionEnd) {
+    textarea.setRangeText(
+      '',
+      textarea.selectionStart - 1,
+      textarea.selectionEnd,
+    );
+  } else {
+   textarea.setRangeText(
+      '',
+    );
+  }
+  // {textarea.value.slice(selectionStart, selectionEnd);
+  console.log(textarea.value);
+}
+
+function pressDel() {
+  textarea.focus();
+
+  console.log(textarea.selectionStart);
+  console.log(textarea.selectionEnd);
+  if (textarea.selectionStart == textarea.selectionEnd) {
+    console.log(textarea.value);
+    textarea.setRangeText(
+      '',
+      textarea.selectionStart,
+      textarea.selectionEnd + 1,
+    );
+  } else {
+    textarea.setRangeText('');
+  }
+}
+
+function pressEnter() {
+  textarea.focus();
+  textarea.value += '\n';
+}
+
+keyboard.addEventListener('click', (event) => {
+  // textarea.setAttribute('autofocus', 'autofocus')
+  const values = Object.values(objTabs);
+  console.log(values);
+  const { target } = event;
+  console.log(target);
+  if (target.classList.contains('hidden')) {
+    return;
+  }
+  if (!target.closest('span')) {
+    return;
+  }
+  if (!values.includes(target.textContent)) {
+    console.log(target);
+
+    textarea.value += `${target.textContent}`;
+  } else if (target.textContent == 'Backspace') {
+      pressBack();
+  } else if (target.textContent == 'Del') {
+    pressDel();
+  } else if (target.textContent == 'Enter') {
+    pressEnter();
+  }
+});
