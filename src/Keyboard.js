@@ -1,4 +1,4 @@
-export class Keyboard {
+export default class Keyboard {
   constructor() {
     this.form = null;
     this.keyboard = null;
