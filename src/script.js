@@ -80,6 +80,12 @@ function checkState() {
   } else if (objLang.lang == 'rus' && objLang.case == 'shiftCaps') {
     divRus.forEach((item) => item.classList.remove('hidden'));
     divRus.forEach((item) => item.querySelector('.shiftCaps').classList.remove('hidden'));
+  } else if (objLang.lang == 'eng' && objLang.case == 'caseUp') {
+    divEng.forEach((item) => item.classList.remove('hidden'));
+    divEng.forEach((item) => item.querySelector('.caseUp').classList.remove('hidden'));
+  } else if (objLang.lang == 'rus' && objLang.case == 'caseUp') {
+    divRus.forEach((item) => item.classList.remove('hidden'));
+    divRus.forEach((item) => item.querySelector('.caseUp').classList.remove('hidden'));
   }
 }
 
@@ -149,13 +155,17 @@ document.addEventListener('keydown', (event) => {
 
  /* ----------------virtual keyboard------------------ */
 
- /* ------------Backspace, Del, Enter Button ----------------------- */
+ /* ------------Backspace, Del, Enter Button Caps BackSpace----------------------- */
 
  function pressBack() {
+  let l = textarea.value.length;
+  console.log(textarea.selectionStart);
+  console.log(textarea.selectionEnd);
+  console.log(l);
   textarea.focus();
-
+  
   if (textarea.selectionStart == textarea.selectionEnd) {
-    textarea.setRangeText(
+      textarea.setRangeText(
       '',
       textarea.selectionStart - 1,
       textarea.selectionEnd,
@@ -170,8 +180,7 @@ document.addEventListener('keydown', (event) => {
 }
 
 function pressDel() {
-  textarea.focus();
-
+ textarea.focus();
   console.log(textarea.selectionStart);
   console.log(textarea.selectionEnd);
   if (textarea.selectionStart == textarea.selectionEnd) {
@@ -191,16 +200,211 @@ function pressEnter() {
   textarea.value += '\n';
 }
 
+function CapsPress() {
+  if (objLang.lang == 'eng' && objLang.case == 'caps') {
+   // divEng.forEach(item => console.log(item.querySelectorAll('span')))
+    divEng.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+    divEng.forEach((item) => item.querySelector('.caseDown').classList.remove('hidden'));
+    keyboard.querySelector('.CapsLock').classList.remove('active');
+    objLang.case = 'caseDown';
+    localStorage.clear();
+    setLocalStorage();
+  } else if (objLang.lang == 'eng' && objLang.case !== 'caps') {
+    divEng.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+    divEng.forEach((item) => item.querySelector('.caps').classList.remove('hidden'));
+  keyboard.querySelector('.CapsLock').classList.add('active');
+  objLang.case = 'caps';
+  localStorage.clear();
+  setLocalStorage();
+  } else if (objLang.lang == 'rus' && objLang.case == 'caps') {
+    divRus.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+    divRus.forEach((item) => item.querySelector('.caseDown').classList.remove('hidden'));
+    keyboard.querySelector('.CapsLock').classList.remove('active');
+    objLang.case = 'caseDown';
+    localStorage.clear();
+    setLocalStorage();
+  } else if (objLang.lang == 'rus' && objLang.case !== 'caps') {
+    divRus.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+    divRus.forEach((item) => item.querySelector('.caps').classList.remove('hidden'));
+ 
+  keyboard.querySelector('.CapsLock').classList.add('active');
+  objLang.case = 'caps';
+  localStorage.clear();
+  setLocalStorage();
+  }
+}
+
+function shiftClick() {
+  console.log(objLang.lang);
+ console.log(objLang.case);
+  if (objLang.lang == 'eng' && objLang.case == 'shiftCaps') {
+    divEng.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+    divEng.forEach((item) => item.querySelector('.caps').classList.remove('hidden'));
+    keyboard.querySelector('.ShiftLeft').classList.remove('active');
+    objLang.case = 'caps';
+    localStorage.clear();
+    setLocalStorage();
+  } else if (objLang.lang == 'eng' && objLang.case == 'caseUp') {
+    divEng.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+    divEng.forEach((item) => item.querySelector('.caseDown').classList.remove('hidden'));
+    keyboard.querySelector('.ShiftLeft').classList.remove('active');
+  objLang.case = 'caseDown';
+  localStorage.clear();
+  setLocalStorage();
+      } else if (objLang.lang == 'rus' && objLang.case == 'shiftCaps') {
+            divRus.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+            divRus.forEach((item) => item.querySelector('.caps').classList.remove('hidden'));
+            keyboard.querySelector('.ShiftLeft').classList.remove('active');
+            objLang.case = 'caps';
+            localStorage.clear();
+            setLocalStorage();
+          } else if (objLang.lang == 'rus' && objLang.case == 'caseUp') {
+            console.log(objLang.case);
+            divRus.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+            divRus.forEach((item) => item.querySelector('.caseDown').classList.remove('hidden'));
+            keyboard.querySelector('.ShiftLeft').classList.remove('active');
+          objLang.case = 'caseDown';
+          localStorage.clear();
+          setLocalStorage();
+              }
+              if (objLang.lang == 'eng' && objLang.case == 'caseDown') {
+                console.log(objLang.case);
+                divEng.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+                divEng.forEach((item) => item.querySelector('.caseUp').classList.remove('hidden'));
+                keyboard.querySelector('.ShiftLeft').classList.add('active');
+                
+              /* setTimeout(()=>{divEng.forEach(item => item.querySelector('.caseUp').classList.add('hidden'));
+                divEng.forEach(item => item.querySelector('.caseDown').classList.remove('hidden'));
+                 keyboard.querySelector('.ShiftLeft').classList.remove('active')}, 100) */
+                  } else if (objLang.lang == 'rus' && objLang.case == 'caseDown') {
+                    divRus.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+                    divRus.forEach((item) => item.querySelector('.caseUp').classList.remove('hidden'));
+                    keyboard.querySelector('.ShiftLeft').classList.add('active');
+                   /* setTimeout(()=>{divEng.forEach(item => item.querySelector('.caseUp').classList.add('hidden'));
+                    divEng.forEach(item => item.querySelector('.caseDown').classList.remove('hidden'));
+                     keyboard.querySelector('.ShiftLeft').classList.remove('active')}, 100) */
+                      }
+}
+/* --------------SHIFT & ALT---------------------------*/
+
+function shiftPress() {
+  if (objLang.lang == 'eng' && objLang.case == 'caps') {
+ divEng.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+ divEng.forEach((item) => item.querySelector('.shiftCaps').classList.remove('hidden'));
+ keyboard.querySelector('.ShiftLeft').classList.add('active');
+objLang.case = 'shiftCaps';
+localStorage.clear();
+setLocalStorage();
+   } else if (objLang.lang == 'eng' && objLang.case == 'caseDown') {
+     divEng.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+     divEng.forEach((item) => item.querySelector('.caseUp').classList.remove('hidden'));
+     keyboard.querySelector('.ShiftLeft').classList.add('active');
+   objLang.case = 'caseUp';
+   localStorage.clear();
+   setLocalStorage();
+       } else if (objLang.lang == 'rus' && objLang.case == '.caps') {
+     divRus.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+     divRus.forEach((item) => item.querySelector('.shiftCaps').classList.remove('hidden'));
+     keyboard.querySelector('.ShiftLeft').classList.add('active');
+   objLang.case = 'shiftCaps';
+ localStorage.clear();
+ setLocalStorage();
+} else if (objLang.lang == 'rus' && objLang.case == 'caseDown') {
+ divRus.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+ divRus.forEach((item) => item.querySelector('.caseUp').classList.remove('hidden'));
+keyboard.querySelector('.ShiftLeft').classList.add('active');
+objLang.case = 'caseUp';
+localStorage.clear();
+setLocalStorage();
+   }  
+}
+
+let flag = 0;
+   function pressShiftAlt(func) {
+    document.addEventListener('mousedown', (event) => {
+      let target = event.target;
+      console.log(target);
+      if (flag == 0 && target.closest('.ShiftLeft') && event.button == 0) {
+       flag = 1;
+       console.log(target);
+        }
+      if (flag == 1 && target.closest('.AltLeft')) {
+        console.log(flag);
+        console.log(target);
+        func();
+        flag = 0;
+      } 
+}); 
+}
+    
+    pressShiftAlt(shiftPress);
+
+document.addEventListener('mousedown', (event) => {
+  let target = event.target;
+  console.log(target);
+  if (target.textContent == 'Shift') {
+    console.log(target);
+  if (objLang.lang == 'eng' && objLang.case == 'caseDown') {
+    console.log(objLang.case);
+    divEng.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+    divEng.forEach((item) => item.querySelector('.caseUp').classList.remove('hidden'));
+    keyboard.querySelector('.ShiftLeft').classList.add('active');
+        } else if (objLang.lang == 'eng' && objLang.case == 'caps') {
+        console.log(objLang.case);
+        divEng.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+        divEng.forEach((item) => item.querySelector('.shiftCaps').classList.remove('hidden'));
+        keyboard.querySelector('.ShiftLeft').classList.add('active'); 
+} else if (objLang.lang == 'rus' && objLang.case == 'caseDown') {
+        divRus.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+        divRus.forEach((item) => item.querySelector('.caseUp').classList.remove('hidden'));
+        keyboard.querySelector('.ShiftLeft').classList.add('active');
+          } else if (objLang.lang == 'rus' && objLang.case == 'caps') {
+            console.log(objLang.case);
+            divRus.forEach((item) => item.querySelectorAll('span').forEach((value) => value.classList.add('hidden')));
+            divRus.forEach((item) => item.querySelector('.shiftCaps').classList.remove('hidden'));
+            keyboard.querySelector('.ShiftLeft').classList.add('active');
+    }
+} 
+});
+  
+document.addEventListener('mouseup', (event) => {
+  let target = event.target;
+  if (target.textContent == 'Shift') {
+    if (objLang.lang == 'eng' && objLang.case == 'caseDown') {
+    divEng.forEach((item) => item.querySelector('.caseUp').classList.add('hidden'));
+    divEng.forEach((item) => item.querySelector('.caseDown').classList.remove('hidden'));
+     keyboard.querySelector('.ShiftLeft').classList.remove('active');
+    } else if (objLang.lang == 'eng' && objLang.case == 'caps') {
+      console.log(objLang.case);
+      divEng.forEach((item) => item.querySelector('.caps').classList.remove('hidden'));
+      divEng.forEach((item) => item.querySelector('.shiftCaps').classList.add('hidden'));
+      keyboard.querySelector('.ShiftLeft').classList.remove('active');
+    } else if (objLang.lang == 'rus' && objLang.case == 'caseDown') {
+      divRus.forEach((item) => item.querySelector('.caseUp').classList.add('hidden'));
+      divRus.forEach((item) => item.querySelector('.caseDown').classList.remove('hidden'));
+      keyboard.querySelector('.ShiftLeft').classList.remove('active');
+    } else if (objLang.lang == 'rus' && objLang.case == 'caps') {
+      console.log(objLang.case);
+      divRus.forEach((item) => item.querySelector('.caps').classList.remove('hidden'));
+      divRus.forEach((item) => item.querySelector('.shiftCaps').classList.add('hidden'));
+      keyboard.querySelector('.ShiftLeft').classList.remove('active');
+    }
+  }
+});
+
 keyboard.addEventListener('click', (event) => {
   // textarea.setAttribute('autofocus', 'autofocus')
   const values = Object.values(objTabs);
   console.log(values);
-  const { target } = event;
+  let target = event.target;
   console.log(target);
   if (target.classList.contains('hidden')) {
     return;
   }
   if (!target.closest('span')) {
+    return;
+  }
+  if (target.classList.contains('rus') || target.classList.contains('eng')) {
     return;
   }
   if (!values.includes(target.textContent)) {
@@ -213,8 +417,16 @@ keyboard.addEventListener('click', (event) => {
     pressDel();
   } else if (target.textContent == 'Enter') {
     pressEnter();
-  }
+  } else if (target.textContent == 'CapsLock') {
+    console.log(target);
+    CapsPress();
+  } else if (target.textContent == 'Shift') {
+    console.log(target);
+    shiftClick(); 
+}
 });
+
+/* -----------EVENT KEYBOARD-------------------------- */
 
 document.addEventListener('keydown', (event) => {
   getLocalStorage();
