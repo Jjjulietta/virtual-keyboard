@@ -6,9 +6,9 @@
 .title {
   font-size: 30px;
   text-align: center;
-  color: rgba(101, 134, 177, 0.8);
-  -webkit-text-stroke: 1px rgba(114, 177, 101, 0.8);
-  -webkit-text-fill-color: rgba(101, 134, 177, 0.8);
+  color: rgba(101, 71, 185, 0.8);
+  -webkit-text-stroke: 1px rgba(50, 55, 97, 0.8);
+  -webkit-text-fill-color: rgba(112, 101, 177, 0.8);
 }
 
 .display-textarea {
@@ -19,6 +19,9 @@
   padding: 10px;
   font-size: 18px;
   columns: #444;
+  border: 3px solid #464268;
+  border-radius: 20px;
+  background-color: rgba(238, 234, 250, 0.8);;
   overflow: auto;
 }
 .keyboard-body {
@@ -27,9 +30,9 @@
   padding: 5px;
   padding-left: 0;
   padding-bottom: 0;
-  background: /*#888888;*/ #a2ebb1;
-  border: 3px solid #222222;
-  border-radius: 5px;
+  background: /*#888888;*/ #e3e2e7;
+  border: 3px solid #484564;
+  border-radius: 10px;
 }
 .keyboard-body .row {
   clear: both;
@@ -43,12 +46,12 @@
   width: 40px;
   height: 40px;
   margin-left: 6px;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 40px;
   text-align: center;
   color:  yellow;
-  background: #444444;
-  border-radius: 3px;
+  background: #2b1d5f86;
+  border-radius: 13px;
   cursor: pointer;
   user-select: none;
   transition: border-radius 0.5s, background-color 0.5s;
@@ -88,7 +91,7 @@
 .keyboard-body .Tab,
 .keyboard-body .MetaLeft {
   font-weight: 600;
-  background-color: #222222;
+  background-color: #484564;
 }
 
 .keyboard-body .Backspace,
