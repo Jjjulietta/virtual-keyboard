@@ -1,4 +1,4 @@
-import { Keyboard } from './Keyboard.js';
+import Keyboard from './Keyboard.js';
 import {
   keyTabs, codeTabs, objTabs, keyboardCode, keyboardK, keyboardKRus, keyboardShift, keyboardShiftR,
 } from './data.js';
