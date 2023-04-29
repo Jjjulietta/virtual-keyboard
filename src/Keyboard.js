@@ -64,35 +64,31 @@ export class Keyboard {
 
   getRowsNum(
     keyboardCode,
-    keyboardKeyRus,
-    keyboardKey,
-    keyboardKeyShift,
-    keyboardKeyShiftRus,
+    keyboardKRus,
+    keyboardK,
+    keyboardShift,
+    keyboardShiftR,
     numBase,
     numNext,
     keyTabs,
     objTabs,
   ) {
     const rowOne = this.getRow();
-    console.log(rowOne);
-    for (let i = numBase; i < numNext; i++) {
+    for (let i = numBase; i < numNext; i += 1) {
       const keyOne = this.getKey();
       keyOne.classList.add(`${keyboardCode[i]}`);
-      console.log(keyOne);
-      console.log(keyboardKeyRus[i]);
       const spanRus = this.getSpan(
         'rus',
-        keyboardKeyRus[i],
-        keyboardKeyShiftRus[i],
+        keyboardKRus[i],
+        keyboardShiftR[i],
         keyTabs,
         objTabs,
       );
-      console.log(spanRus);
       keyOne.append(spanRus);
       const spanEng = this.getSpan(
         'eng',
-        keyboardKey[i],
-        keyboardKeyShift[i],
+        keyboardK[i],
+        keyboardShift[i],
         keyTabs,
         objTabs,
       );
