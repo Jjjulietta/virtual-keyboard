@@ -41,6 +41,15 @@ for (let i = 0; i < numbers.length; i += 1) {
   keyboard.append(row);
 }
 
+const desc = document.createElement('p');
+desc.innerHTML = 'The keyboard is created in the operating system Windows';
+desc.classList.add('description');
+form.append(desc);
+const langKey = document.createElement('p');
+langKey.innerHTML = 'language switching: left ctrl + alt';
+langKey.classList.add('description');
+form.append(langKey);
+
 const divRus = keyboard.querySelectorAll('.rus');
 const divEng = keyboard.querySelectorAll('.eng');
 const spans = keyboard.querySelectorAll('span');
