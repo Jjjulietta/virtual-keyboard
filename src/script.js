@@ -117,7 +117,12 @@ document.addEventListener('keydown', (event) => {
     const itemsKey = keyItem.querySelectorAll('span');
     itemsKey.forEach((item) => {
       if (!item.classList.contains('hidden') && !item.classList.contains('rus') && !item.classList.contains('eng')) {
-        textarea.value += item.textContent;
+        if (textarea.selectionStart !== textarea.value.length) {
+          const text = item.textContent;
+          textarea.setRangeText(`${text}`, textarea.selectionStart, textarea.selectionEnd, 'end');
+        } else {
+          textarea.value += item.textContent;
+        }
       }
     });
   }
