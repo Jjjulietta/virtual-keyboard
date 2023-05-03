@@ -378,7 +378,12 @@ keyboard.addEventListener('click', (event) => {
   }
   if (!values.includes(target.textContent)) {
     textarea.focus();
-    textarea.value += `${target.textContent}`;
+    if (textarea.selectionStart !== textarea.value.length) {
+      const text = target.textContent;
+      textarea.setRangeText(`${text}`, textarea.selectionStart, textarea.selectionEnd, 'end');
+    } else {
+      textarea.value += `${target.textContent}`;
+    }
   } else if (target.textContent === 'Backspace') {
     pressBack();
   } else if (target.textContent === 'Del') {
